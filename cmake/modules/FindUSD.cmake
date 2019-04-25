@@ -27,6 +27,11 @@ if(WIN32)
             PATHS ${USD_ROOT}/lib
                   $ENV{USD_ROOT}/lib
             DOC "USD Libraries directory")
+elseif(APPLE)
+    find_path(USD_LIBRARY_DIR libusd.dylib
+            PATHS ${USD_ROOT}/lib
+                  $ENV{USD_ROOT}/lib
+            DOC "USD Libraries directory")
 elseif(UNIX)
     find_path(USD_LIBRARY_DIR libusd.so
             PATHS ${USD_ROOT}/lib
