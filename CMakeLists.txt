@@ -33,7 +33,11 @@ find_package(USD REQUIRED)
 include(${USD_CONFIG_FILE})
 
 # to get PYTHON_EXECUTABLE
-find_package(PythonInterp)
+if(NOT DEFINED PYTHON_EXECUTABLE)
+  add_definitions(-DPYTHON_EXECUTABLE=python)
+endif()
+
+# find_package(PythonInterp)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include(CXXDefaults)
@@ -146,4 +150,4 @@ install(FILES ${PROJECT_BINARY_DIR}/ALUsdMayaConfig.cmake
 )
 
 install(CODE "message(STATUS \"POST INSTALL: Compiling python/pyc for ${CMAKE_INSTALL_PREFIX} ... \")")
-install(CODE "execute_process(COMMAND python -m compileall ${CMAKE_INSTALL_PREFIX} )")
+install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} -m compileall ${CMAKE_INSTALL_PREFIX} )")
