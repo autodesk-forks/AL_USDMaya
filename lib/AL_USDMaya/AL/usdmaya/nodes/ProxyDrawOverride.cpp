@@ -189,7 +189,7 @@ void ProxyDrawOverride::draw(const MHWRender::MDrawContext& context, const MUser
 
     uint32_t numLights = context.numberOfActiveLights(considerAllSceneLights);
 
-    GlfSimpleLightVector lights;
+    GarchSimpleLightVector lights;
     lights.reserve(numLights);
     for(uint32_t i = 0; i < numLights; ++i)
     {
@@ -200,7 +200,7 @@ void ProxyDrawOverride::draw(const MHWRender::MDrawContext& context, const MUser
       bool hasDirection;
       bool hasPosition;
       context.getLightInformation(i, positions, direction, intensity, color, hasDirection, hasPosition, considerAllSceneLights);
-      GlfSimpleLight light;
+      GarchSimpleLight light;
       if(hasPosition)
       {
         if(positions.length() == 1)
@@ -364,7 +364,7 @@ void ProxyDrawOverride::draw(const MHWRender::MDrawContext& context, const MUser
       return col;
     };
 
-    GlfSimpleMaterial material;
+    GarchSimpleMaterial material;
     material.SetAmbient(getColour(ptr->m_shape->ambientPlug()));
     material.SetDiffuse(getColour(ptr->m_shape->diffusePlug()));
     material.SetSpecular(getColour(ptr->m_shape->specularPlug()));
@@ -402,7 +402,7 @@ void ProxyDrawOverride::draw(const MHWRender::MDrawContext& context, const MUser
     if(combined.size())
     {
       UsdImagingGLRenderParams params = ptr->m_params;
-      params.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME;
+      params.drawMode = HdStDrawMode::DRAW_WIREFRAME;
       MColor colour = M3dView::leadColor();
       params.wireframeColor = GfVec4f(colour.r, colour.g, colour.b, 1.0f);
       glDepthFunc(GL_LEQUAL);

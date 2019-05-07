@@ -547,35 +547,35 @@ bool ProxyShape::getRenderAttris(UsdImagingGLRenderParams& attribs, const MHWRen
   const uint32_t wireframeOnShaded2 = (MHWRender::MFrameContext::kWireFrame | MHWRender::MFrameContext::kFlatShaded);
   if((displayStyle & wireframeOnShaded1) == wireframeOnShaded1 ||
      (displayStyle & wireframeOnShaded2) == wireframeOnShaded2) {
-    attribs.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME_ON_SURFACE;
+    attribs.drawMode = HdStDrawMode::DRAW_WIREFRAME_ON_SURFACE;
   }
   else
   if(displayStyle & MHWRender::MFrameContext::kWireFrame) {
-    attribs.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME;
+    attribs.drawMode = HdStDrawMode::DRAW_WIREFRAME;
   }
   else
 #if MAYA_API_VERSION >= 201600
   if(displayStyle & MHWRender::MFrameContext::kFlatShaded) {
-    attribs.drawMode = UsdImagingGLDrawMode::DRAW_SHADED_FLAT;
+    attribs.drawMode = HdStDrawMode::DRAW_SHADED_FLAT;
     if ((displayStatus == MHWRender::kActive) ||
         (displayStatus == MHWRender::kLead) ||
         (displayStatus == MHWRender::kHilite)) {
-      attribs.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME_ON_SURFACE;
+      attribs.drawMode = HdStDrawMode::DRAW_WIREFRAME_ON_SURFACE;
     }
   }
   else
 #endif
   if(displayStyle & MHWRender::MFrameContext::kGouraudShaded) {
-    attribs.drawMode = UsdImagingGLDrawMode::DRAW_SHADED_SMOOTH;
+    attribs.drawMode = HdStDrawMode::DRAW_SHADED_SMOOTH;
     if ((displayStatus == MHWRender::kActive) ||
         (displayStatus == MHWRender::kLead) ||
         (displayStatus == MHWRender::kHilite)) {
-      attribs.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME_ON_SURFACE;
+      attribs.drawMode = HdStDrawMode::DRAW_WIREFRAME_ON_SURFACE;
     }
   }
   else
   if(displayStyle & MHWRender::MFrameContext::kBoundingBox) {
-    attribs.drawMode = UsdImagingGLDrawMode::DRAW_POINTS;
+    attribs.drawMode = HdStDrawMode::DRAW_POINTS;
   }
 
   // determine whether to use the default material for everything
