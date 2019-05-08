@@ -113,6 +113,11 @@ set_target_properties(_AL_USDMayaSchemas
     PROPERTIES
         SUFFIX ".pyd"
 )
+elseif(APPLE)
+set_target_properties(_AL_USDMayaSchemas
+    PROPERTIES
+        SUFFIX ".so"
+)
 endif()
 
 target_link_libraries(_AL_USDMayaSchemas AL_USDMayaSchemas ${DEPENDANT_LIBRARIES})

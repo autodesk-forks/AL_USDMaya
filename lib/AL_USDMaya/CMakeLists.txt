@@ -254,6 +254,11 @@ set_target_properties(${PYTHON_LIBRARY_NAME}
     PROPERTIES
         SUFFIX ".pyd"
 )
+elseif(APPLE)
+set_target_properties(${PYTHON_LIBRARY_NAME}
+    PROPERTIES
+        SUFFIX ".so"
+)
 endif()
 
 target_link_libraries(${PYTHON_LIBRARY_NAME}
