@@ -157,23 +157,23 @@ void ProxyShapeUI::draw(const MDrawRequest& request, M3dView& view) const
   switch(request.displayStyle())
   {
   case M3dView::kBoundingBox:
-    params.drawMode = UsdImagingGLDrawMode::DRAW_POINTS;
+    params.drawMode = HdStDrawMode::DRAW_POINTS;
     break;
 
   case M3dView::kFlatShaded:
-    params.drawMode = UsdImagingGLDrawMode::DRAW_SHADED_FLAT;
+    params.drawMode = HdStDrawMode::DRAW_SHADED_FLAT;
     break;
 
   case M3dView::kGouraudShaded:
-    params.drawMode = UsdImagingGLDrawMode::DRAW_SHADED_SMOOTH;
+    params.drawMode = HdStDrawMode::DRAW_SHADED_SMOOTH;
     break;
 
   case M3dView::kWireFrame:
-    params.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME;
+    params.drawMode = HdStDrawMode::DRAW_WIREFRAME;
     break;
 
   case M3dView::kPoints:
-    params.drawMode = UsdImagingGLDrawMode::DRAW_POINTS;
+    params.drawMode = HdStDrawMode::DRAW_POINTS;
     break;
   }
 
@@ -262,7 +262,7 @@ void ProxyShapeUI::draw(const MDrawRequest& request, M3dView& view) const
   if(paths.size())
   {
     MColor colour = M3dView::leadColor();
-    params.drawMode = UsdImagingGLDrawMode::DRAW_WIREFRAME;
+    params.drawMode = HdStDrawMode::DRAW_WIREFRAME;
     params.wireframeColor = GfVec4f(colour.r, colour.g, colour.b, 1.0f);
     glDepthFunc(GL_LEQUAL);
     engine->RenderBatch(paths, params);

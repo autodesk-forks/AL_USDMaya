@@ -46,8 +46,10 @@ namespace AL {
 namespace usdmaya {
 namespace nodes {
 
+#define HYDRA_RENDERING_BACKEND UsdImagingGLEngine::OpenGL
+
 Engine::Engine(const SdfPath& rootPath, const SdfPathVector& excludedPaths)
-  : UsdImagingGLEngine(rootPath, excludedPaths) {}
+  : UsdImagingGLEngine(HYDRA_RENDERING_BACKEND, rootPath, excludedPaths) {}
 
 bool Engine::TestIntersectionBatch(
   const GfMatrix4d &viewMatrix,
@@ -92,7 +94,7 @@ bool Engine::TestIntersectionBatch(
 
   _taskController->SetPickResolution(pickResolution);
   if (!_taskController->TestIntersection(
-      &_engine,
+      _engine,
       _intersectCollection,
       qparams,
       HdxIntersectionModeTokens->unique,
